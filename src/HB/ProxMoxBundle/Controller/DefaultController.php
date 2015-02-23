@@ -16,18 +16,4 @@ class DefaultController extends Controller
     {
         return array();
     }
-    
-    /**
-     * @Route("/nodes")
-     * @Template()
-     * 
-     */
-    public function nodesAction()
-    {
-    	$proxmox = $this->container->get('hb_prox_mox.api');
-
-    	$nodes = $proxmox->get("/nodes");
-
-    	return array('nodes' => $nodes['data']);
-    }
 }

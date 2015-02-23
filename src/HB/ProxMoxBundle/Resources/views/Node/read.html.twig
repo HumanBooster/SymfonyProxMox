@@ -1,0 +1,17 @@
+{%  extends "::base.html.twig" %}
+
+{%  block body %}
+<p>
+	{{ dump(node) }}
+	
+	{{  dump(status) }}
+	<ul>
+	{% for vm in vms %}
+		<li>{{ dump(vm) }}<a href="{{ path("vm_read", {"node": node_name, "vmid": vm.vmid}) }}">{{ vm.name }} - {{ vm.vmid }}</a>
+		- <a href="{{ path("vm_clone", {"node": node_name, "vmid": vm.vmid}) }}">cloner</a></li>
+	{% else %}
+		<li>Aucune vm.</li>
+	{%  endfor %}
+	</ul>
+</p>
+{%  endblock %}
