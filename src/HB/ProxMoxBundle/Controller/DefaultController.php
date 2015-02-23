@@ -18,14 +18,16 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/test")
+     * @Route("/nodes")
      * @Template()
      * 
      */
-    public function testAction()
+    public function nodesAction()
     {
     	$proxmox = $this->container->get('hb_prox_mox.api');
-    	if ($proxmox->testMe()) echo "Génial";
-    	return array();
+
+    	$nodes = $proxmox->get("/nodes");
+
+    	return array('nodes' => $nodes['data']);
     }
 }

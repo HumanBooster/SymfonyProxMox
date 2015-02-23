@@ -1,0 +1,11 @@
+{%  extends '::base.html.twig' %}
+
+{% block body %}
+	<h2>Liste des nodes</h2>
+	
+	{%  for node in nodes %}
+		<p>{{ dump(node) }}</p>
+	{%  else %}
+		<p>Aucune node à afficher.</p>
+	{% endfor %}
+{% endblock %}
