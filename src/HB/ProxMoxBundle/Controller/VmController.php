@@ -51,14 +51,15 @@ class VmController extends Controller {
 		$proxmox = $this->container->get ( 'hb_prox_mox.api' );
 	
 		// get next insert Id
-		$newid = $proxmox->get("/cluster/nextid");
+		$newid = $proxmox->get("/cluster/nextid")['data'];
 		
+		print_r($newid);
 		
-		$post = array("newid"=> $newid,
+		$post = ["newid"=> $newid,
 				"node" => $node,
-				"vmid" => $vmid);
+				"vmid" => $vmid];
 		
-		$response = $proxmox->post("/nodes/".$node."/qemu/".$vmid."/clone");
+		$response = $proxmox->create("/nodes/".$node."/qemu/".$vmid."/clone", $post);
 		
 		return $this->redirect( $this->generateUrl("vm_read", array("node" => $node, "vmid" => $newid)) );
 	}

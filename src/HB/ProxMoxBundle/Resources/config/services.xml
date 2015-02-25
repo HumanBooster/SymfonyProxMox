@@ -1,13 +1,24 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+	<parameters>
+		<parameter key="proxmox.hostname">%proxmox_hostname%</parameter>
+		<parameter key="proxmox.port">%proxmox_port%</parameter>
+		<parameter key="proxmox.realm">%proxmox_realm%</parameter>
+		<parameter key="proxmox.user">%proxmox_user%</parameter>
+		<parameter key="proxmox.password">%proxmox_password%</parameter>
+	</parameters>
 
-    
-    <services>
-        <service id="hb_prox_mox.api" class="HB\ProxMoxBundle\Service\ProxMoxService">
-        </service>
-    </services>
-    
+	<services>
+		<service id="hb_prox_mox.api" class="HB\ProxMoxBundle\Service\ProxMoxService">
+			<argument>%proxmox.hostname%</argument>
+			<argument>%proxmox.port%</argument>
+			<argument>%proxmox.realm%</argument>
+			<argument>%proxmox.user%</argument>
+			<argument>%proxmox.password%</argument>
+		</service>
+	</services>
+
 </container>
